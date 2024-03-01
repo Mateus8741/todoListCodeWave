@@ -10,16 +10,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        green: {
-          lemon: '#A8FF35',
-          success: '#4ECB71',
-        },
+        lemon: '#A8FF35',
 
-        gray: {
-          primary: '#27272A',
-          secondary: '#1A1A1D',
-          back: '#121214',
-        },
+        success: '#4ECB71',
+
+        primary: '#27272A',
+
+        secondary: '#1A1A1D',
+
+        back: '#121214',
       },
     },
   },

@@ -12,7 +12,7 @@ export function Box({ children }: Props) {
 
   return (
     <RN.View
-      className="flex-1 bg-gray-back"
+      className="flex-1 bg-back"
       style={{
         paddingHorizontal: 20,
         paddingTop: top,
