@@ -1,8 +1,7 @@
 import { Image, View } from 'react-native'
 
 import Logo from '@/assets/logo.png'
-import { CustonButton } from '@/components/CustonButton'
-import { Input } from '@/components/TextInput'
+import { Cards, CustonButton, Input } from '@/components'
 
 export default function Page() {
   return (
@@ -13,6 +12,8 @@ export default function Page() {
         <Input placeholder="Adicione seu todo..." />
         <CustonButton />
       </View>
+
+      <Cards />
     </>
   )
 }
