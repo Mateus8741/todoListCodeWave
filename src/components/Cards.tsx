@@ -19,7 +19,7 @@ export function Cards({ isCompleted, title }: CardsProps) {
         {title}
       </Text>
 
-      {isCompleted && <Feather name="check" size={20} color="white" />}
+      {isCompleted && <Feather name="check" size={20} color="green" />}
     </View>
   )
 }
