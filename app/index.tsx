@@ -1,12 +1,13 @@
-import { Image, Text, View } from 'react-native'
+import { Image, View } from 'react-native'
 
 import Logo from '@/assets/logo.png'
+import { Input } from '@/components/TextInput'
 
 export default function Page() {
   return (
     <View>
       <Image source={Logo} alt="Logo" className="self-center" />
-      <Text>Home</Text>
+      <Input placeholder="Adicione seu todo..." />
     </View>
   )
 }
