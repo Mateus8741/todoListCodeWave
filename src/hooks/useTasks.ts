@@ -1,15 +1,21 @@
 import { useState } from 'react'
 
-import { CardsProps } from '@/components'
 import { useStorage } from './useStorage'
 
-export function useTaskManager() {
-  const [tasks, setTasks] = useState<CardsProps[]>([])
+export interface Task {
+  id: number
+  title: string
+  isCompleted: boolean
+}
 
-  const { addTask: add, setIsCompleted: toggle } = useStorage()
+export function useTaskManager() {
+  const [tasks, setTasks] = useState<Task[]>([])
+
+  const { addTask: add, setIsCompleted: toggle, tasks: tks } = useStorage()
 
   const addTask = (taskText: string) => {
-    const newTask: CardsProps = {
+    const newTask: Task = {
+      id: tks.length,
       title: taskText,
       isCompleted: false,
     }
@@ -19,7 +25,7 @@ export function useTaskManager() {
     add(newTask)
   }
 
-  const setTaskCompleted = (id: number) => {
+  const toggleTask = (id: number) => {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, completed: !task.isCompleted } : task,
     )
@@ -31,6 +37,6 @@ export function useTaskManager() {
 
   return {
     addTask,
-    setTaskCompleted,
+    toggleTask,
   }
 }

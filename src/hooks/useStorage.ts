@@ -1,13 +1,14 @@
-import { CardsProps } from '@/components'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import { Task } from './useTasks'
 
 interface TaskStore {
-  tasks: CardsProps[]
-  addTask: (task: CardsProps) => void
+  tasks: Task[]
+  addTask: (task: Task) => void
   setIsCompleted: (id: number) => void
+  cleanTasks: () => void
 }
 
 const useStore = create<TaskStore>()(
@@ -21,6 +22,7 @@ const useStore = create<TaskStore>()(
             index === id ? { ...task, isCompleted: !task.isCompleted } : task,
           ),
         })),
+      cleanTasks: () => set({ tasks: [] }),
     }),
     {
       name: 'tasks-storage',
@@ -30,7 +32,7 @@ const useStore = create<TaskStore>()(
 )
 
 export function useStorage() {
-  const { tasks, addTask, setIsCompleted } = useStore()
+  const { tasks, addTask, setIsCompleted, cleanTasks } = useStore()
 
-  return { tasks, addTask, setIsCompleted }
+  return { tasks, addTask, setIsCompleted, cleanTasks }
 }

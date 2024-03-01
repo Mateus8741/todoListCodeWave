@@ -2,19 +2,23 @@ import { FlatList, Image, ListRenderItemInfo, View } from 'react-native'
 
 import Logo from '@/assets/logo.png'
 import { Cards, CardsProps, CustonButton, Input } from '@/components'
+import { useStorage } from '@/hooks/useStorage'
+import { useTaskManager } from '@/hooks/useTasks'
 import { useState } from 'react'
 
 export default function Page() {
-  const [todos, setTodos] = useState<CardsProps[]>([])
+  const [title, setTitle] = useState<string>('')
 
-  function saveTodo() {
-    if (todos[0]?.title) {
-      setTodos((oldState) => [...oldState, todos[0]])
-    }
+  const { addTask, toggleTask } = useTaskManager()
+  const { tasks } = useStorage()
+
+  function handleAddTask() {
+    addTask(title)
+    setTitle('')
   }
 
   function renderItem({ item }: ListRenderItemInfo<CardsProps>) {
-    return <Cards {...item} />
+    return <Cards {...item} onPress={() => toggleTask(item.id)} />
   }
 
   return (
@@ -24,17 +28,15 @@ export default function Page() {
       <View className="items-center mt-7 gap-x-3 flex-row">
         <Input
           placeholder="Adicione seu todo..."
-          onChangeText={(value) =>
-            setTodos([{ title: value, isCompleted: false }])
-          }
-          value={todos[0]?.title || ''}
+          onChangeText={(text) => setTitle(text)}
+          value={title}
         />
-        <CustonButton onPress={saveTodo} />
+        <CustonButton onPress={handleAddTask} />
       </View>
 
       <FlatList
-        data={cards}
-        keyExtractor={(item) => item.title}
+        data={tasks}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         className="mt-7 px-3"
       />
@@ -42,10 +44,10 @@ export default function Page() {
   )
 }
 
-const cards = [
-  { title: 'Fazer café', isCompleted: true },
-  { title: 'Estudar React Native', isCompleted: false },
-  { title: 'Estudar Next.js', isCompleted: false },
-  { title: 'Estudar TypeScript', isCompleted: true },
-  { title: 'Estudar Node.js', isCompleted: false },
-]
+// const cards = [
+//   { id: 1, title: 'Fazer café', isCompleted: true },
+//   { id: 2, title: 'Estudar React Native', isCompleted: false },
+//   { id: 3, title: 'Estudar Next.js', isCompleted: false },
+//   { id: 4, title: 'Estudar TypeScript', isCompleted: true },
+//   { id: 5, title: 'Estudar Node.js', isCompleted: false },
+// ]
