@@ -14,7 +14,7 @@ export function Cards({ isCompleted, title }: CardsProps) {
 
   return (
     <View
-      className={`bg-primary ${cardCompleted} flex-row items-center justify-between py-7 px-3 rounded-lg`}>
+      className={`bg-primary ${cardCompleted} flex-row mb-4 items-center justify-between py-7 px-3 rounded-lg`}>
       <Text className={`text-xl ${cardText} font-bold text-white`}>
         {title}
       </Text>
