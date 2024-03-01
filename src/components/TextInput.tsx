@@ -5,13 +5,11 @@ import {
   View,
 } from 'react-native'
 
-export interface TextInputProps extends RNTextInputProps {
-  moreClassName?: string
-}
+export type TextInputProps = RNTextInputProps
 
-export function Input({ moreClassName, ...rnTextInputProps }: TextInputProps) {
+export function Input({ ...rnTextInputProps }: TextInputProps) {
   return (
-    <View className={moreClassName}>
+    <View className="flex-1">
       <View className="w-full border border-primary py-4 rounded-md ">
         <RNTextInput
           className="px-3 text-white"
