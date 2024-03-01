@@ -1,25 +1,27 @@
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
 
 import { Feather } from '@expo/vector-icons'
 
-type CardsProps = {
+export type CardsProps = TouchableOpacityProps & {
   isCompleted?: boolean
   title: string
 }
 
-export function Cards({ isCompleted, title }: CardsProps) {
+export function Cards({ isCompleted, title, ...rest }: CardsProps) {
   const cardCompleted = isCompleted ? 'bg-secondary' : 'bg-primary'
 
   const cardText = isCompleted && 'line-through text-gray-500'
 
   return (
-    <View
-      className={`bg-primary ${cardCompleted} flex-row mb-4 items-center justify-between py-7 px-3 rounded-lg`}>
+    <TouchableOpacity
+      className={`bg-primary ${cardCompleted} flex-row mb-4 items-center justify-between py-7 px-3 rounded-lg`}
+      activeOpacity={0.7}
+      {...rest}>
       <Text className={`text-xl ${cardText} font-bold text-white`}>
         {title}
       </Text>
 
       {isCompleted && <Feather name="check" size={20} color="green" />}
-    </View>
+    </TouchableOpacity>
   )
 }
