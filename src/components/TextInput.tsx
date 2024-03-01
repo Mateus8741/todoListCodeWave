@@ -11,7 +11,7 @@ export interface TextInputProps extends RNTextInputProps {
 
 export function Input({ moreClassName, ...rnTextInputProps }: TextInputProps) {
   return (
-    <View className={`mb-3 ${moreClassName}`}>
+    <View className={moreClassName}>
       <View className="w-full border border-primary py-4 rounded-md ">
         <RNTextInput
           className="px-3 text-white"
