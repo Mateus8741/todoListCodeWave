@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 export type CardsProps = TouchableOpacityProps & {
+  id?: number
   isCompleted?: boolean
   title: string
 }
