@@ -3,7 +3,7 @@ import { Text, View } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 type CardsProps = {
-  isCompleted: boolean
+  isCompleted?: boolean
   title: string
 }
 
